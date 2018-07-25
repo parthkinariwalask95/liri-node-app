@@ -1,3 +1,6 @@
+var donenv = require('dotenv');
+require('dotenv').config();
+var keys = require("./key.js");
 var Twitter = require('twitter');
 var fs = require("fs");
 var request = require("request");
@@ -8,10 +11,11 @@ if (t1 === "my-tweets") {
 
 
     var client = new Twitter({
-        consumer_key: 'NAcgxnp5NL4lgxOUqKEORqD60',
-        consumer_secret: 'SSnkbnoJFb1B5mDsSdr9YFgvdpBTMCQL9z4z3uzSjdrxUYZWJW',
-        access_token_key: '1020383961007239168-LxpWbFG7RYI1yeITfsp4YunjgY3ncl',
-        access_token_secret: 'buJ82aqu7cuHyNJ3b9H6XpxSV7ovv1zHYXwU4WXjy32wn'
+       
+        consumer_key:keys.twitter.consumer_key,
+        consumer_secret:keys.twitter.consumer_secret,
+        access_token_key: keys.twitter.access_token_key,
+        access_token_secret: keys.twitter.access_token_secret
     });
 
     var params = { screen_name: 'nodejs' };
@@ -30,9 +34,10 @@ else if (t1 === "spotify-this-song") {
         p1 = "The sign ace of base";
     }
     var spotify = new Spotify({
-        id: "e5698b3a69fa499ca29b2e73bd3b53d0",
-        secret: "42dbf7452ac245b3bde379dcd0da65c0"
-    });
+ 
+        id:keys.spotify.id,
+        secret:keys.spotify.secret
+        });
 
     spotify.search({ type: 'track', query: p1 }, function (err, data) {
         if (err) {
